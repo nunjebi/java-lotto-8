@@ -11,6 +11,8 @@ public class Application {
     public static void main(String[] args) {
         int inputPurchaseAmount = inputLottoPurchaseAmount();
         List<List<Integer>> lottoNumbers = getLottoNumbers(inputPurchaseAmount);
+
+        printLottoNumbers(lottoNumbers);
     }
 
     private static int inputLottoPurchaseAmount() {
@@ -56,5 +58,12 @@ public class Application {
         return IntStream.range(0, lottoCount)
                 .mapToObj(index -> Randoms.pickUniqueNumbersInRange(1, 45, 6))
                 .collect(Collectors.toList());
+    }
+
+    private static void printLottoNumbers(List<List<Integer>> lottoNumbers) {
+        System.out.println();
+        System.out.println(lottoNumbers.size() + LottoConstants.PURCHASE_SUFFIX_MESSAGE);
+        lottoNumbers.forEach(System.out::println);
+
     }
 }
