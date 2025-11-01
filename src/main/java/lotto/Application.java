@@ -1,12 +1,16 @@
 package lotto;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 
 public class Application {
     public static void main(String[] args) {
         int inputPurchaseAmount = inputLottoPurchaseAmount();
-
-        System.out.println("money: " + inputPurchaseAmount); // print test
+        List<List<Integer>> lottoNumbers = getLottoNumbers(inputPurchaseAmount);
     }
 
     private static int inputLottoPurchaseAmount() {
@@ -45,5 +49,12 @@ public class Application {
         if (inputPurchaseAmount % LottoConstants.LOTTO_PRICE != LottoConstants.NO_REMAINDER)
             return true;
         return false;
+    }
+
+    private static List<List<Integer>> getLottoNumbers(int inputPurchaseAmount) {
+        int lottoCount = inputPurchaseAmount / LottoConstants.LOTTO_PRICE;
+        return IntStream.range(0, lottoCount)
+                .mapToObj(index -> Randoms.pickUniqueNumbersInRange(1, 45, 6))
+                .collect(Collectors.toList());
     }
 }
