@@ -16,6 +16,7 @@ public class Application {
 
         LottoResult lottoResult = machine.checkWinning(purchasedLottos, winningNumbers.getWinningNumbers(),
                 winningNumbers.getBonusWinningNumber());
+        double lottoProfit = getLottoProfit(purchaseAmount, lottoResult.getTotalProfit());
     }
 
     private static int inputLottoPurchaseAmount() {
@@ -59,7 +60,10 @@ public class Application {
         System.out.println();
         System.out.println(purchasedLottos.size() + LottoConstants.PURCHASE_SUFFIX_MESSAGE);
         purchasedLottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
-
     }
 
+    private static double getLottoProfit(int purchaseAmount, long totalProfit) {
+        double rate = (double) totalProfit / purchaseAmount * 100;
+        return Math.round(rate * 10) / (double) 10;
+    }
 }
