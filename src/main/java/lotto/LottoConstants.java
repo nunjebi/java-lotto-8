@@ -11,7 +11,13 @@ public class LottoConstants {
 
     public static final String INPUT_PURCHASE_AMOUNT_GUIDE_MESSAGE = "구입금액을 입력해 주세요.";
     public static final String PURCHASE_SUFFIX_MESSAGE = "개를 구매했습니다.";
+    public static final String INPUT_WINNING_NUMBERS_GUIDE_MESSAGE = "당첨 번호를 입력해 주세요.";
+    public static final String INPUT_BONUS_WINNING_NUMBER_GUIDE_MESSAGE = "보너스 번호를 입력해 주세요.";
 
     public static final String MULTIPLE_OF_UNIT_ERROR_MESSAGE = "[ERROR] 1,000원 단위로 입력해야 합니다.";
     public static final String NOT_POSITIVE_INTEGER_ERROR_MESSAGE = "[ERROR] 입력은 양의 정수여야 합니다.";
+    public static final String NOT_NUMBER_ERROR_MESSAGE = "[ERROR] 입력은 양의 정수여야 합니다.";
+    public static final String NUMBER_RANGE_ERROR_MESSAGE = "[ERROR] 입력은 1부터 45사이의 정수여야 합니다.";
+    public static final String WINNING_NUMBER_COUNT_ERROR_MESSAGE = "[ERROR] 로또 번호는 6개여야 합니다.";
+    public static final String NOT_UNIQUE_NUMBER_ERROR_MESSAGE = "[ERROR] 중복된 수가 존재합니다.";
 }
