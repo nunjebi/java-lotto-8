@@ -15,6 +15,14 @@ public class WinningNumbers {
         this.bonusWinningNumber = inputBonusWinningNumber();
     }
 
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers.getNumbers();
+    }
+
+    public Integer getBonusWinningNumbers() {
+        return bonusWinningNumber;
+    }
+
     private Lotto inputWinningNumbers() {
         while (LottoConstants.OCCURRENCE_ERROR) {
             try {
@@ -109,7 +117,4 @@ public class WinningNumbers {
                 .collect(Collectors.toList());
     }
 
-    private List<Integer> getWinningNumbers() {
-        return winningNumbers.getNumbers();
-    }
 }

@@ -13,6 +13,9 @@ public class Application {
         printPurchasedLottos(purchasedLottos);
 
         WinningNumbers winningNumbers = new WinningNumbers();
+
+        LottoResult lottoResult = machine.checkWinning(purchasedLottos, winningNumbers.getWinningNumbers(),
+                winningNumbers.getBonusWinningNumber());
     }
 
     private static int inputLottoPurchaseAmount() {

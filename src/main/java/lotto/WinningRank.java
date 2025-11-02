@@ -1,0 +1,34 @@
+package lotto;
+
+public enum WinningRank {
+    FIRST(6, false, 2_000_000_000),
+    SECOND(5, true, 30_000_000),
+    THIRD(5, false, 1_500_000),
+    FOURTH(4, false, 50_000),
+    FIFTH(3, false, 5_000),
+    MISS(0, false, 0);
+
+    private final int matchCount;
+    private final boolean bonusMatch;
+    private final int money;
+
+    WinningRank(int matchCount, boolean bonusMatch, int money) {
+        this.matchCount = matchCount;
+        this.bonusMatch = bonusMatch;
+        this.money = money;
+    }
+
+    public static WinningRank getRank(long count, boolean bonusMatch) {
+        if (count == 6)
+            return FIRST;
+        if (count == 5 && bonusMatch)
+            return SECOND;
+        if (count == 5)
+            return THIRD;
+        if (count == 4)
+            return FOURTH;
+        if (count == 3)
+            return FIFTH;
+        return MISS;
+    }
+}
