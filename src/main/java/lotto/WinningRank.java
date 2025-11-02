@@ -1,12 +1,12 @@
 package lotto;
 
 public enum WinningRank {
-    FIRST(6, false, 2_000_000_000),
-    SECOND(5, true, 30_000_000),
-    THIRD(5, false, 1_500_000),
-    FOURTH(4, false, 50_000),
+    MISS(0, false, 0),
     FIFTH(3, false, 5_000),
-    MISS(0, false, 0);
+    FOURTH(4, false, 50_000),
+    THIRD(5, false, 1_500_000),
+    SECOND(5, true, 30_000_000),
+    FIRST(6, false, 2_000_000_000);
 
     private final int matchCount;
     private final boolean bonusMatch;
@@ -16,6 +16,10 @@ public enum WinningRank {
         this.matchCount = matchCount;
         this.bonusMatch = bonusMatch;
         this.money = money;
+    }
+
+    public int getMoney() {
+        return money;
     }
 
     public static WinningRank getRank(long count, boolean bonusMatch) {
@@ -30,5 +34,15 @@ public enum WinningRank {
         if (count == 3)
             return FIFTH;
         return MISS;
+    }
+
+    public String formatResult(int count) {
+        String bonusMessage = "";
+        if (bonusMatch) {
+            bonusMessage += ", 보너스 볼 일치";
+        }
+
+        return String.format("%d개 일치%s (%s원) - %d개",
+                matchCount, bonusMessage, String.format("%,d", money), count);
     }
 }

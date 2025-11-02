@@ -6,9 +6,11 @@ import java.util.stream.IntStream;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import static lotto.LottoConstants.*;
+
 public class LottoMachine {
     public List<Lotto> buyLottos(int purchaseAmount) {
-        int lottoCount = purchaseAmount / LottoConstants.LOTTO_PRICE;
+        int lottoCount = purchaseAmount / LOTTO_PRICE;
         return IntStream.range(0, lottoCount)
                 .mapToObj(index -> generateLotto())
                 .collect(Collectors.toList());

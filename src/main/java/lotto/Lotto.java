@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static lotto.LottoConstants.*;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -18,11 +20,11 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (!validateWinningNumbersCount(numbers)) {
-            throw new IllegalArgumentException(LottoConstants.WINNING_NUMBER_COUNT_ERROR_MESSAGE);
+            throw new IllegalArgumentException(WINNING_NUMBER_COUNT_ERROR_MESSAGE);
         }
 
         if (!validateUniqueNumbers(numbers)) {
-            throw new IllegalArgumentException(LottoConstants.NOT_UNIQUE_NUMBER_ERROR_MESSAGE);
+            throw new IllegalArgumentException(NOT_UNIQUE_NUMBER_ERROR_MESSAGE);
         }
     }
 

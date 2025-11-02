@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import static lotto.LottoConstants.*;
+
 public class WinningNumbers {
     private Lotto winningNumbers;
     private int bonusWinningNumber;
@@ -19,12 +21,12 @@ public class WinningNumbers {
         return winningNumbers.getNumbers();
     }
 
-    public Integer getBonusWinningNumbers() {
+    public Integer getBonusWinningNumber() {
         return bonusWinningNumber;
     }
 
     private Lotto inputWinningNumbers() {
-        while (LottoConstants.OCCURRENCE_ERROR) {
+        while (OCCURRENCE_ERROR) {
             try {
                 printInputWinningNumbersGide();
                 String winningNumbers = Console.readLine();
@@ -41,7 +43,7 @@ public class WinningNumbers {
     }
 
     private int inputBonusWinningNumber() {
-        while (LottoConstants.OCCURRENCE_ERROR) {
+        while (OCCURRENCE_ERROR) {
             try {
                 printInputBonusWinningNumberGuide();
                 String bonusWinningNumber = Console.readLine();
@@ -62,10 +64,10 @@ public class WinningNumbers {
 
         parseNumbers.forEach(number -> {
             if (!isNumber(number) || !isNumber(winningNumbers.charAt(winningNumbers.length() - 1))) {
-                throw new IllegalArgumentException(LottoConstants.NOT_NUMBER_ERROR_MESSAGE);
+                throw new IllegalArgumentException(NOT_NUMBER_ERROR_MESSAGE);
             }
             if (!validateNumberRange(number)) {
-                throw new IllegalArgumentException(LottoConstants.NUMBER_RANGE_ERROR_MESSAGE);
+                throw new IllegalArgumentException(NUMBER_RANGE_ERROR_MESSAGE);
             }
         });
     }
@@ -73,14 +75,14 @@ public class WinningNumbers {
     private void validateBonusWinningNumber(String bonusWinningNumber) {
         int lastIndex = bonusWinningNumber.length() - 1;
         if (!isNumber(bonusWinningNumber) || !isNumber(bonusWinningNumber.charAt(lastIndex))) {
-            throw new IllegalArgumentException(LottoConstants.NOT_NUMBER_ERROR_MESSAGE);
+            throw new IllegalArgumentException(NOT_NUMBER_ERROR_MESSAGE);
         }
         if (!validateNumberRange(bonusWinningNumber)) {
-            throw new IllegalArgumentException(LottoConstants.NUMBER_RANGE_ERROR_MESSAGE);
+            throw new IllegalArgumentException(NUMBER_RANGE_ERROR_MESSAGE);
         }
 
         if (!validateUniqueNumbers(getWinningNumbers(), bonusWinningNumber)) {
-            throw new IllegalArgumentException(LottoConstants.NOT_UNIQUE_NUMBER_ERROR_MESSAGE);
+            throw new IllegalArgumentException(NOT_UNIQUE_NUMBER_ERROR_MESSAGE);
         }
     }
 
@@ -104,11 +106,11 @@ public class WinningNumbers {
     }
 
     private void printInputWinningNumbersGide() {
-        System.out.println(LottoConstants.INPUT_WINNING_NUMBERS_GUIDE_MESSAGE);
+        System.out.println(INPUT_WINNING_NUMBERS_GUIDE_MESSAGE);
     }
 
     private void printInputBonusWinningNumberGuide() {
-        System.out.println(LottoConstants.INPUT_BONUS_WINNING_NUMBER_GUIDE_MESSAGE);
+        System.out.println(INPUT_BONUS_WINNING_NUMBER_GUIDE_MESSAGE);
     }
 
     private List<Integer> parseWinningNumbers(String winningNumbers) {
