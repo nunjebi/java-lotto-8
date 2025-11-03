@@ -34,7 +34,7 @@ public class WinningNumbers {
                 validateInputWinningNumbers(winningNumbers);
 
                 return new Lotto(parseWinningNumbersAsInt(winningNumbers));
-            } catch (IllegalArgumentException exception) {
+            } catch (IllegalArgumentException | IllegalStateException exception) {
                 System.out.println(exception.getMessage());
             }
         }
