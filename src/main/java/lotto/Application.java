@@ -72,7 +72,7 @@ public class Application {
 
     static void validateInputPurchaseAmount(String purchaseAmount) {
         if (!validatePositiveInteger(purchaseAmount)) {
-            throw new IllegalArgumentException(NOT_POSITIVE_INTEGER_ERROR_MESSAGE);
+            throw new IllegalArgumentException(NOT_NUMBER_ERROR_MESSAGE);
         }
 
         if (!validateMultipleOfUnit(purchaseAmount)) {

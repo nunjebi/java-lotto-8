@@ -44,7 +44,6 @@ public class LottoConstants {
     public static final String PRINT_LOTTO_PROFIT_FORMAT_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     public static final String MULTIPLE_OF_UNIT_ERROR_MESSAGE = "[ERROR] 1,000원 단위로 입력해야 합니다.";
-    public static final String NOT_POSITIVE_INTEGER_ERROR_MESSAGE = "[ERROR] 입력은 양의 정수여야 합니다.";
     public static final String NOT_NUMBER_ERROR_MESSAGE = "[ERROR] 입력은 양의 정수여야 합니다.";
     public static final String NUMBER_RANGE_ERROR_MESSAGE = "[ERROR] 입력은 1부터 45사이의 정수여야 합니다.";
     public static final String WINNING_NUMBER_COUNT_ERROR_MESSAGE = "[ERROR] 로또 번호는 6개여야 합니다.";

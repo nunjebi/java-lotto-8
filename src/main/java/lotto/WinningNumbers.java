@@ -49,7 +49,7 @@ public class WinningNumbers {
                 validateBonusWinningNumber(bonusWinningNumber);
 
                 return Integer.parseInt(bonusWinningNumber);
-            } catch (IllegalArgumentException exception) {
+            } catch (IllegalArgumentException | IllegalStateException exception) {
                 System.out.println(exception.getMessage());
             }
         }
@@ -60,7 +60,7 @@ public class WinningNumbers {
 
         parseNumbers.forEach(number -> {
             if (!isNumber(number) || !isNumber(winningNumbers.charAt(winningNumbers.length() - 1))) {
-                throw new IllegalArgumentException(NOT_NUMBER_ERROR_MESSAGE);
+                throw new NumberFormatException(NOT_NUMBER_ERROR_MESSAGE);
             }
             if (!validateNumberRange(number)) {
                 throw new IllegalArgumentException(NUMBER_RANGE_ERROR_MESSAGE);
@@ -71,14 +71,14 @@ public class WinningNumbers {
     private void validateBonusWinningNumber(String bonusWinningNumber) {
         int lastIndex = bonusWinningNumber.length() - 1;
         if (!isNumber(bonusWinningNumber) || !isNumber(bonusWinningNumber.charAt(lastIndex))) {
-            throw new IllegalArgumentException(NOT_NUMBER_ERROR_MESSAGE);
+            throw new NumberFormatException(NOT_NUMBER_ERROR_MESSAGE);
         }
         if (!validateNumberRange(bonusWinningNumber)) {
             throw new IllegalArgumentException(NUMBER_RANGE_ERROR_MESSAGE);
         }
 
         if (!validateUniqueNumbers(getWinningNumbers(), bonusWinningNumber)) {
-            throw new IllegalArgumentException(NOT_UNIQUE_NUMBER_ERROR_MESSAGE);
+            throw new IllegalStateException(NOT_UNIQUE_NUMBER_ERROR_MESSAGE);
         }
     }
 
@@ -105,7 +105,7 @@ public class WinningNumbers {
         System.out.println();
         System.out.println(INPUT_WINNING_NUMBERS_GUIDE_MESSAGE);
     }
-    
+
     private void printInputBonusWinningNumberGuide() {
         System.out.println();
         System.out.println(INPUT_BONUS_WINNING_NUMBER_GUIDE_MESSAGE);

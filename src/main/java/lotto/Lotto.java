@@ -24,7 +24,7 @@ public class Lotto {
         }
 
         if (!validateUniqueNumbers(numbers)) {
-            throw new IllegalArgumentException(NOT_UNIQUE_NUMBER_ERROR_MESSAGE);
+            throw new IllegalStateException (NOT_UNIQUE_NUMBER_ERROR_MESSAGE);
         }
     }
 
