@@ -14,6 +14,7 @@ import static lotto.LottoConstants.*;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ApplicationTest extends NsTest {
@@ -60,22 +61,32 @@ class ApplicationTest extends NsTest {
     }
 
     @ParameterizedTest
-    @DisplayName("입력된 금액이 양의 정수가 아닌 경우")
-    @ValueSource(strings = { " ", "a,", "a, " })
-    void validateInputPurchaseAmount_공백만입력(String purchaseAmount) {
+    @DisplayName("입력된 구입금액이 올바른 값인 경우")
+    @ValueSource(strings = { "1000", "2000", "10000", "100000000" })
+    void 구입금액의_입력이_올바른_경우는_예외가_발생하지_않는다(String purchaseAmount) {
+        assertThatCode(
+                () -> Application.validateInputPurchaseAmount(purchaseAmount))
+                .doesNotThrowAnyException();
+    }
+
+    @ParameterizedTest
+    @DisplayName("입력된 구입금액이 양의 정수가 아닌 경우")
+    @ValueSource(strings = { " ", "a,", "a, ", "-1" })
+    void 구입금액이_양의_정수가_아닌_경우_예외가_발생한다(String purchaseAmount) {
         assertThatThrownBy(
                 () -> Application.validateInputPurchaseAmount(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(NOT_POSITIVE_INTEGER_ERROR_MESSAGE);
+                .hasMessageContaining(NOT_NUMBER_ERROR_MESSAGE);
     }
 
-    @DisplayName("1,000원 단위가 아닌 경우")
-    @Test
-    void 구입금액이_1000원_단위가_아닌_경우_예외가_발생한다() {
+    @ParameterizedTest
+    @DisplayName("입력된 구입금액이 1,000원 단위가 아닌 경우")
+    @ValueSource(strings = { "1010", "910" })
+    void 구입금액이_1000원_단위가_아닌_경우_예외가_발생한다(String purchaseAmount) {
         assertThatThrownBy(
-                () -> Application.validateInputPurchaseAmount("1010"))
+                () -> Application.validateInputPurchaseAmount(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(NOT_POSITIVE_INTEGER_ERROR_MESSAGE);
+                .hasMessageContaining(MULTIPLE_OF_UNIT_ERROR_MESSAGE);
     }
 
     @Override
