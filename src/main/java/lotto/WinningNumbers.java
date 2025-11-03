@@ -102,10 +102,12 @@ public class WinningNumbers {
     }
 
     private void printInputWinningNumbersGide() {
+        System.out.println();
         System.out.println(INPUT_WINNING_NUMBERS_GUIDE_MESSAGE);
     }
-
+    
     private void printInputBonusWinningNumberGuide() {
+        System.out.println();
         System.out.println(INPUT_BONUS_WINNING_NUMBER_GUIDE_MESSAGE);
     }
 
