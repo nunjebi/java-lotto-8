@@ -75,9 +75,16 @@ public class Application {
             throw new IllegalArgumentException(NOT_NUMBER_ERROR_MESSAGE);
         }
 
-        if (!validateMultipleOfUnit(purchaseAmount)) {
-            throw new IllegalArgumentException(MULTIPLE_OF_UNIT_ERROR_MESSAGE);
+        if (!validatePurchaseAmount(purchaseAmount)) {
+            throw new IllegalArgumentException(
+                    String.format(MAX_PURCHASE_AMOUNT_COUNT_ERROR, MAX_PURCHASE_AMOUNT_COUNT));
         }
+
+        if (!validateMultipleOfUnit(purchaseAmount)) {
+            throw new IllegalArgumentException(
+                    String.format(MULTIPLE_OF_UNIT_ERROR_MESSAGE, LOTTO_PRICE));
+        }
+
     }
 
     private static boolean validatePositiveInteger(String purchaseAmount) {
@@ -91,8 +98,19 @@ public class Application {
         return false;
     }
 
+    private static boolean validatePurchaseAmount(String purchaseAmount) {
+        if (purchaseAmount.length() > MAX_PURCHASE_AMOUNT_LENGTH_COUNT)
+            return false;
+
+        int amount = Integer.parseInt(purchaseAmount);
+        if (amount <= MAX_PURCHASE_AMOUNT_COUNT * LOTTO_PRICE)
+            return true;
+        return false;
+    }
+
     private static double getLottoProfit(int purchaseAmount, long totalProfit) {
         double rate = (double) totalProfit / purchaseAmount * PERCENTAGE;
         return Math.round(rate * ROUND_SCALE) / (double) ROUND_SCALE;
     }
+
 }

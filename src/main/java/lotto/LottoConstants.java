@@ -8,6 +8,8 @@ public class LottoConstants {
     public static final boolean DEFAULT_BONUS_MATCH_STATUS = true;
 
     public static final int LOTTO_PRICE = 1_000;
+    public static final int MAX_PURCHASE_AMOUNT_COUNT = 1_000;
+    public static final int MAX_PURCHASE_AMOUNT_LENGTH_COUNT = 7;
     public static final int NO_REMAINDER = 0;
     public static final int MAX_WINNING_NUMBERS_LENGTH = 6;
     public static final int MIN_PURCHASE_LOTTO_COUNT = 0;
@@ -43,9 +45,10 @@ public class LottoConstants {
     public static final String PRINT_STATS_GUIDE_MESSAGE = "당첨 통계\n---";
     public static final String PRINT_LOTTO_PROFIT_FORMAT_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
-    public static final String MULTIPLE_OF_UNIT_ERROR_MESSAGE = "[ERROR] 1,000원 단위로 입력해야 합니다.";
+    public static final String MULTIPLE_OF_UNIT_ERROR_MESSAGE = "[ERROR] %,d원 단위로 입력해야 합니다.";
     public static final String NOT_NUMBER_ERROR_MESSAGE = "[ERROR] 입력은 양의 정수여야 합니다.";
-    public static final String NUMBER_RANGE_ERROR_MESSAGE = "[ERROR] 입력은 1부터 45사이의 정수여야 합니다.";
-    public static final String WINNING_NUMBER_COUNT_ERROR_MESSAGE = "[ERROR] 로또 번호는 6개여야 합니다.";
+    public static final String MAX_PURCHASE_AMOUNT_COUNT_ERROR = "[ERROR] 로또 구매 개수는 최대 %,d개입니다.";
+    public static final String NUMBER_RANGE_ERROR_MESSAGE = "[ERROR] 입력은 %d부터 %d사이의 정수여야 합니다.";
+    public static final String WINNING_NUMBER_COUNT_ERROR_MESSAGE = "[ERROR] 로또 번호는 %d개여야 합니다.";
     public static final String NOT_UNIQUE_NUMBER_ERROR_MESSAGE = "[ERROR] 중복된 수가 존재합니다.";
 }

@@ -62,7 +62,7 @@ class ApplicationTest extends NsTest {
 
     @ParameterizedTest
     @DisplayName("입력된 구입금액이 올바른 값인 경우")
-    @ValueSource(strings = { "1000", "2000", "10000", "100000000" })
+    @ValueSource(strings = { "1000", "2000", "10000" })
     void 구입금액의_입력이_올바른_경우는_예외가_발생하지_않는다(String purchaseAmount) {
         assertThatCode(
                 () -> Application.validateInputPurchaseAmount(purchaseAmount))
@@ -86,7 +86,20 @@ class ApplicationTest extends NsTest {
         assertThatThrownBy(
                 () -> Application.validateInputPurchaseAmount(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(MULTIPLE_OF_UNIT_ERROR_MESSAGE);
+                .hasMessageContaining(
+                        String.format(MULTIPLE_OF_UNIT_ERROR_MESSAGE, LOTTO_PRICE));
+    }
+
+    @ParameterizedTest
+    @DisplayName("입력된 구입금액이 1,000,000원을 넘는 경우")
+    @ValueSource(strings = { "1000001", "100000000000000000" })
+    void 구입금액이_1000000원을_넘는_경우_예외가_발생한다(String purchaseAmount) {
+        assertThatThrownBy(
+                () -> Application.validateInputPurchaseAmount(purchaseAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(
+                        String.format(MAX_PURCHASE_AMOUNT_COUNT_ERROR, MAX_PURCHASE_AMOUNT_COUNT));
+
     }
 
     @Override

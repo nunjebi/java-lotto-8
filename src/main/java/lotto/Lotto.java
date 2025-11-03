@@ -20,11 +20,12 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (!validateWinningNumbersCount(numbers)) {
-            throw new IllegalArgumentException(WINNING_NUMBER_COUNT_ERROR_MESSAGE);
+            throw new IllegalArgumentException(
+                    String.format(WINNING_NUMBER_COUNT_ERROR_MESSAGE, MAX_WINNING_NUMBERS_LENGTH));
         }
 
         if (!validateUniqueNumbers(numbers)) {
-            throw new IllegalStateException (NOT_UNIQUE_NUMBER_ERROR_MESSAGE);
+            throw new IllegalStateException(NOT_UNIQUE_NUMBER_ERROR_MESSAGE);
         }
     }
 

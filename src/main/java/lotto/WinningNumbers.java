@@ -63,7 +63,8 @@ public class WinningNumbers {
                 throw new NumberFormatException(NOT_NUMBER_ERROR_MESSAGE);
             }
             if (!validateNumberRange(number)) {
-                throw new IllegalArgumentException(NUMBER_RANGE_ERROR_MESSAGE);
+                throw new IllegalArgumentException(
+                        String.format(NUMBER_RANGE_ERROR_MESSAGE, MIN_LOTTO_NUMBER_RANGE, MAX_LOTTO_NUMBER_RANGE));
             }
         });
     }
@@ -74,7 +75,8 @@ public class WinningNumbers {
             throw new NumberFormatException(NOT_NUMBER_ERROR_MESSAGE);
         }
         if (!validateNumberRange(bonusWinningNumber)) {
-            throw new IllegalArgumentException(NUMBER_RANGE_ERROR_MESSAGE);
+            throw new IllegalArgumentException(
+                    String.format(NUMBER_RANGE_ERROR_MESSAGE, MIN_LOTTO_NUMBER_RANGE, MAX_LOTTO_NUMBER_RANGE));
         }
 
         if (!validateUniqueNumbers(getWinningNumbers(), bonusWinningNumber)) {
