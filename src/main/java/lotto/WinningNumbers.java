@@ -33,9 +33,7 @@ public class WinningNumbers {
 
                 validateInputWinningNumbers(winningNumbers);
 
-                List<Integer> numbers = parseWinningNumbers(winningNumbers);
-
-                return new Lotto(numbers);
+                return new Lotto(parseWinningNumbersAsInt(winningNumbers));
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
             }
@@ -58,9 +56,7 @@ public class WinningNumbers {
     }
 
     private void validateInputWinningNumbers(String winningNumbers) {
-        List<String> parseNumbers = Arrays.stream(winningNumbers.split(LOTTO_NUMBER_DELIMITER))
-                .map(String::trim)
-                .toList();
+        List<String> parseNumbers = parseWinningNumbersAsString(winningNumbers);
 
         parseNumbers.forEach(number -> {
             if (!isNumber(number) || !isNumber(winningNumbers.charAt(winningNumbers.length() - 1))) {
@@ -113,10 +109,16 @@ public class WinningNumbers {
         System.out.println(INPUT_BONUS_WINNING_NUMBER_GUIDE_MESSAGE);
     }
 
-    private List<Integer> parseWinningNumbers(String winningNumbers) {
+    private List<Integer> parseWinningNumbersAsInt(String winningNumbers) {
         return Arrays.stream(winningNumbers.split(LOTTO_NUMBER_DELIMITER))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+    }
+
+    private List<String> parseWinningNumbersAsString(String winningNumbers) {
+        return Arrays.stream(winningNumbers.split(LOTTO_NUMBER_DELIMITER))
+                .map(String::trim)
+                .toList();
     }
 
 }
