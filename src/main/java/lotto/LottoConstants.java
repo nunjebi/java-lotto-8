@@ -15,6 +15,7 @@ public class LottoConstants {
     public static final int MIN_PURCHASE_LOTTO_COUNT = 0;
     public static final int MIN_LOTTO_NUMBER_RANGE = 1;
     public static final int MAX_LOTTO_NUMBER_RANGE = 45;
+    public static final int MAX_LOTTO_NUMBER_LENGTH = 2;
 
     public static final int MATCH_MISS = 0;
     public static final int MATCH_THREE = 3;

@@ -46,7 +46,7 @@ public class WinningNumbers {
                 printInputBonusWinningNumberGuide();
                 String bonusWinningNumber = Console.readLine();
 
-                validateBonusWinningNumber(bonusWinningNumber);
+                validateBonusWinningNumber(getWinningNumbers(), bonusWinningNumber);
 
                 return Integer.parseInt(bonusWinningNumber);
             } catch (IllegalArgumentException | IllegalStateException exception) {
@@ -55,7 +55,7 @@ public class WinningNumbers {
         }
     }
 
-    private void validateInputWinningNumbers(String winningNumbers) {
+    public static void validateInputWinningNumbers(String winningNumbers) {
         List<String> parseNumbers = parseWinningNumbersAsString(winningNumbers);
 
         parseNumbers.forEach(number -> {
@@ -69,37 +69,41 @@ public class WinningNumbers {
         });
     }
 
-    private void validateBonusWinningNumber(String bonusWinningNumber) {
+    public static void validateBonusWinningNumber(List<Integer> winningNumbers, String bonusWinningNumber) {
         int lastIndex = bonusWinningNumber.length() - 1;
         if (!isNumber(bonusWinningNumber) || !isNumber(bonusWinningNumber.charAt(lastIndex))) {
             throw new NumberFormatException(NOT_NUMBER_ERROR_MESSAGE);
         }
+
         if (!validateNumberRange(bonusWinningNumber)) {
             throw new IllegalArgumentException(
                     String.format(NUMBER_RANGE_ERROR_MESSAGE, MIN_LOTTO_NUMBER_RANGE, MAX_LOTTO_NUMBER_RANGE));
         }
 
-        if (!validateUniqueNumbers(getWinningNumbers(), bonusWinningNumber)) {
+        if (!validateUniqueNumbers(winningNumbers, bonusWinningNumber)) {
             throw new IllegalStateException(NOT_UNIQUE_NUMBER_ERROR_MESSAGE);
         }
     }
 
-    private boolean isNumber(Character number) {
+    private static boolean isNumber(Character number) {
         return Character.isDigit(number);
     }
 
-    private boolean isNumber(String number) {
+    private static boolean isNumber(String number) {
         return number.matches(LOTTO_NUMBER_PATTERN);
     }
 
-    private boolean validateNumberRange(String number) {
+    private static boolean validateNumberRange(String number) {
+        if (number.length() > MAX_LOTTO_NUMBER_LENGTH)
+            return false;
+
         int perseNumber = Integer.parseInt(number);
         if (perseNumber < MIN_LOTTO_NUMBER_RANGE || perseNumber > MAX_LOTTO_NUMBER_RANGE)
             return false;
         return true;
     }
 
-    private boolean validateUniqueNumbers(List<Integer> winningNumbers, String bonusWinningNumber) {
+    private static boolean validateUniqueNumbers(List<Integer> winningNumbers, String bonusWinningNumber) {
         return !winningNumbers.contains(Integer.parseInt(bonusWinningNumber));
     }
 
@@ -119,7 +123,7 @@ public class WinningNumbers {
                 .collect(Collectors.toList());
     }
 
-    private List<String> parseWinningNumbersAsString(String winningNumbers) {
+    private static List<String> parseWinningNumbersAsString(String winningNumbers) {
         return Arrays.stream(winningNumbers.split(LOTTO_NUMBER_DELIMITER))
                 .map(String::trim)
                 .toList();
