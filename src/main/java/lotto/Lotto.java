@@ -29,7 +29,7 @@ public class Lotto {
     }
 
     private boolean validateWinningNumbersCount(List<Integer> numbers) {
-        if (numbers.size() != 6)
+        if (numbers.size() != MAX_WINNING_NUMBERS_LENGTH)
             return false;
         return true;
     }

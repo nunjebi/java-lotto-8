@@ -11,7 +11,7 @@ import static lotto.LottoConstants.*;
 public class LottoMachine {
     public List<Lotto> buyLottos(int purchaseAmount) {
         int lottoCount = purchaseAmount / LOTTO_PRICE;
-        return IntStream.range(0, lottoCount)
+        return IntStream.range(MIN_PURCHASE_LOTTO_COUNT, lottoCount)
                 .mapToObj(index -> generateLotto())
                 .collect(Collectors.toList());
     }

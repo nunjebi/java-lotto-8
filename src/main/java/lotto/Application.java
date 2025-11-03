@@ -70,7 +70,7 @@ public class Application {
         System.out.println(String.format(PRINT_LOTTO_PROFIT_FORMAT_MESSAGE, lottoProfit));
     }
 
-    private static void validateInputPurchaseAmount(String purchaseAmount) {
+    static void validateInputPurchaseAmount(String purchaseAmount) {
         if (!validatePositiveInteger(purchaseAmount)) {
             throw new IllegalArgumentException(NOT_POSITIVE_INTEGER_ERROR_MESSAGE);
         }
@@ -81,7 +81,7 @@ public class Application {
     }
 
     private static boolean validatePositiveInteger(String purchaseAmount) {
-        return purchaseAmount.matches("^[1-9]\\d*$");
+        return purchaseAmount.matches(GET_POSITIVE_INTEGER_REGEX);
     }
 
     private static boolean validateMultipleOfUnit(String purchaseAmount) {

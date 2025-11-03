@@ -1,12 +1,14 @@
 package lotto;
 
+import static lotto.LottoConstants.*;
+
 public enum WinningRank {
-    MISS(0, false, 0),
-    FIFTH(3, false, 5_000),
-    FOURTH(4, false, 50_000),
-    THIRD(5, false, 1_500_000),
-    SECOND(5, true, 30_000_000),
-    FIRST(6, false, 2_000_000_000);
+    MISS(MATCH_MISS, false, MONEY_MISS),
+    FIFTH(MATCH_THREE, false, MONEY_FIFTH),
+    FOURTH(MATCH_FOUR, false, MONEY_FOURTH),
+    THIRD(MATCH_FIVE, false, MONEY_THIRD),
+    SECOND(MATCH_FIVE, true, MONEY_SECOND),
+    FIRST(MATCH_SIX, false, MONEY_FIRST);
 
     private final int matchCount;
     private final boolean bonusMatch;
@@ -23,26 +25,26 @@ public enum WinningRank {
     }
 
     public static WinningRank getRank(long count, boolean bonusMatch) {
-        if (count == 6)
+        if (count == MATCH_SIX)
             return FIRST;
-        if (count == 5 && bonusMatch)
+        if (count == MATCH_FIVE && bonusMatch)
             return SECOND;
-        if (count == 5)
+        if (count == MATCH_FIVE)
             return THIRD;
-        if (count == 4)
+        if (count == MATCH_FOUR)
             return FOURTH;
-        if (count == 3)
+        if (count == MATCH_THREE)
             return FIFTH;
         return MISS;
     }
 
     public String formatResult(int count) {
-        String bonusMessage = "";
+        String bonusMessage = EMPTY_MESSAGE;
         if (bonusMatch) {
-            bonusMessage += ", 보너스 볼 일치";
+            bonusMessage += WINNING_RANK_BONUS_MESSAGE;
         }
 
-        return String.format("%d개 일치%s (%s원) - %d개",
-                matchCount, bonusMessage, String.format("%,d", money), count);
+        return String.format(WINNING_RANK_RESULT_FORMAT,
+                matchCount, bonusMessage, String.format(PRINT_MONEY_FORMAT, money), count);
     }
 }

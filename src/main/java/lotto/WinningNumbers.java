@@ -58,7 +58,7 @@ public class WinningNumbers {
     }
 
     private void validateInputWinningNumbers(String winningNumbers) {
-        List<String> parseNumbers = Arrays.stream(winningNumbers.split(","))
+        List<String> parseNumbers = Arrays.stream(winningNumbers.split(LOTTO_NUMBER_DELIMITER))
                 .map(String::trim)
                 .toList();
 
@@ -91,12 +91,12 @@ public class WinningNumbers {
     }
 
     private boolean isNumber(String number) {
-        return number.matches("\\d+");
+        return number.matches(LOTTO_NUMBER_PATTERN);
     }
 
     private boolean validateNumberRange(String number) {
         int perseNumber = Integer.parseInt(number);
-        if (perseNumber < 1 || perseNumber > 45)
+        if (perseNumber < MIN_LOTTO_NUMBER_RANGE || perseNumber > MAX_LOTTO_NUMBER_RANGE)
             return false;
         return true;
     }
@@ -114,7 +114,7 @@ public class WinningNumbers {
     }
 
     private List<Integer> parseWinningNumbers(String winningNumbers) {
-        return Arrays.stream(winningNumbers.split(","))
+        return Arrays.stream(winningNumbers.split(LOTTO_NUMBER_DELIMITER))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
