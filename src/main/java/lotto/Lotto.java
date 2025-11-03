@@ -18,7 +18,7 @@ public class Lotto {
         return numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    public static void validate(List<Integer> numbers) {
         if (!validateWinningNumbersCount(numbers)) {
             throw new IllegalArgumentException(
                     String.format(WINNING_NUMBER_COUNT_ERROR_MESSAGE, MAX_WINNING_NUMBERS_LENGTH));
@@ -29,13 +29,13 @@ public class Lotto {
         }
     }
 
-    private boolean validateWinningNumbersCount(List<Integer> numbers) {
+    private static boolean validateWinningNumbersCount(List<Integer> numbers) {
         if (numbers.size() != MAX_WINNING_NUMBERS_LENGTH)
             return false;
         return true;
     }
 
-    private boolean validateUniqueNumbers(List<Integer> numbers) {
+    private static boolean validateUniqueNumbers(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (numbers.size() != uniqueNumbers.size())
             return false;
